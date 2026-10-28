@@ -1,2 +1,18 @@
-# library-management
-DDD와 Spring Security, Spring Data JPA를 적용하는 도서관리시스템 학습 프로젝트
+# Library Management
+
+도서관리시스템을 구현하며 DDD, Spring Security,
+Spring Data JPA를 학습하고 적용하는 프로젝트입니다.
+
+## 학습 목표
+
+- 도메인 규칙과 객체의 책임을 고려하여 설계하기
+- 인증과 접근 제어 구현하기
+- JPA를 활용한 데이터 저장과 조회 구현하기
+- 설계 결정과 구현 과정 기록하기
+
+## 1차 구현 예정 기능
+
+- 회원가입
+- JWT 로그인
+- 본인 정보 조회 및 변경
+- 입력 검증, 예외 처리 및 테스트
