@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: library-management
+
+  datasource:
+    url: jdbc:h2:~/tools/db/library
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
+
+  h2:
+    console:
+      enabled: true
+
+logging:
+  level:
+    org.hibernate.SQL: debug
