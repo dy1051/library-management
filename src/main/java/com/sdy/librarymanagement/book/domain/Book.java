@@ -36,7 +36,7 @@ public class Book {
         if (rentalStatus == RentalStatus.AVAILABLE) {
             rentalStatus = RentalStatus.RENTED;
         } else {
-            throw new IllegalStateException("대여중입니다!");
+            throw new BookAlreadyRentedException();
         }
     }
 

@@ -48,4 +48,9 @@ public class MemberController {
         memberService.withdraw(authentication.getName());
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/{memberId}")
+    public MemberResponse findById(@PathVariable("memberId") Long memberId) {
+        return MemberResponse.from(memberService.findById(memberId));
+    }
 }
