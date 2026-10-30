@@ -3,6 +3,7 @@ package com.sdy.librarymanagement.global.exception;
 import com.sdy.librarymanagement.book.domain.BookNotFoundException;
 import com.sdy.librarymanagement.member.domain.DuplicateLoginIdException;
 import com.sdy.librarymanagement.member.domain.MemberNotFoundException;
+import com.sdy.librarymanagement.member.domain.PasswordMismatchException;
 import com.sdy.librarymanagement.rental.domain.RentalNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,5 +31,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(RentalNotFoundException.class)
     public ResponseEntity<String> handleRentalNotFound(RentalNotFoundException exception) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
+    }
+
+    @ExceptionHandler(PasswordMismatchException.class)
+    public ResponseEntity<String> handlePasswordMismatch(PasswordMismatchException exception) {
+        return ResponseEntity.badRequest().body(exception.getMessage());
     }
 }

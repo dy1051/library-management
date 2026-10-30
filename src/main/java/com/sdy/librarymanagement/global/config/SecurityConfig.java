@@ -39,6 +39,8 @@ public class SecurityConfig {
                         .ignoringRequestMatchers("/api/members")
                         .ignoringRequestMatchers("/api/books", "/api/books/**")
                         .ignoringRequestMatchers("/api/rentals", "/api/rentals/**")
+                        .ignoringRequestMatchers("/api/members/me/password")
+                        .ignoringRequestMatchers("/api/members/me")
                 )
                 .headers(headers -> headers
                         .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin)
