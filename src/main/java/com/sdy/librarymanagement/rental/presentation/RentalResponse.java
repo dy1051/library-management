@@ -13,7 +13,7 @@ public record RentalResponse(
     public static RentalResponse from(Rental rental) {
         return new RentalResponse(
                 rental.getId(),
-                rental.getBookId(),
+                rental.getBook().getId(),
                 rental.getRentedOn(),
                 rental.getDueDate()
         );

@@ -1,5 +1,7 @@
 package com.sdy.librarymanagement.rental.domain;
 
+import com.sdy.librarymanagement.book.domain.Book;
+import com.sdy.librarymanagement.member.domain.Member;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -12,9 +14,9 @@ import java.time.LocalDate;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Rental {
 
-    public Rental(Long memberId, Long bookId, LocalDate rentedOn) {
-        this.memberId = memberId;
-        this.bookId = bookId;
+    public Rental(Member member, Book book, LocalDate rentedOn) {
+        this.member = member;
+        this.book = book;
         this.rentedOn = rentedOn;
         this.dueDate = rentedOn.plusDays(7);
     }
@@ -22,11 +24,13 @@ public class Rental {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "member_id", nullable = false)
-    private Long memberId;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "member_id", nullable = false)
+    private Member member;
 
-    @Column(name = "book_id", nullable = false)
-    private Long bookId;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "book_id", nullable = false)
+    private Book book;
 
     @Column(name = "rented_on", nullable = false)
     private LocalDate rentedOn;

@@ -34,7 +34,7 @@ public class RentalService {
         Book book = bookRepository.findById(bookId).orElseThrow(BookNotFoundException::new);
         book.rent();
 
-        Rental rental = new Rental(member.getId(), book.getId(), LocalDate.now());
+        Rental rental = new Rental(member, book, LocalDate.now());
         Rental savedRental = rentalRepository.save(rental);
         member.increaseRentalCount();
 
@@ -54,11 +54,11 @@ public class RentalService {
         Member member = memberRepository.findByLoginId(loginId).orElseThrow(MemberNotFoundException::new);
         Rental rental = rentalRepository.findById(rentalId).orElseThrow(RentalNotFoundException::new);
 
-        if (!rental.getMemberId().equals(member.getId())) {
+        if (!rental.getMember().getId().equals(member.getId())) {
             throw new AccessDeniedException("본인의 대여만 반납할 수 있습니다.");
         }
 
-        Book book = bookRepository.findById(rental.getBookId()).orElseThrow(BookNotFoundException::new);
+        Book book = rental.getBook();
         book.returnBook();
         member.decreaseRentalCount();
         rentalRepository.delete(rental);
@@ -69,7 +69,7 @@ public class RentalService {
         Member member = memberRepository.findByLoginId(loginId).orElseThrow(MemberNotFoundException::new);
         Rental rental = rentalRepository.findById(rentalId).orElseThrow(RentalNotFoundException::new);
 
-        if (!rental.getMemberId().equals(member.getId())) {
+        if (!rental.getMember().getId().equals(member.getId())) {
             throw new AccessDeniedException("본인의 대여만 연장할 수 있습니다.");
         }
 
