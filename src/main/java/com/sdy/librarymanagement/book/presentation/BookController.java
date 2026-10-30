@@ -1,6 +1,7 @@
 package com.sdy.librarymanagement.book.presentation;
 
 import com.sdy.librarymanagement.book.application.BookService;
+import com.sdy.librarymanagement.book.domain.RentalStatus;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -51,6 +52,13 @@ public class BookController {
     @GetMapping("/category")
     public List<BookResponse> findByCategory(@RequestParam("category") String category) {
         return bookService.findByCategory(category).stream()
+                .map(BookResponse::from)
+                .toList();
+    }
+
+    @GetMapping("/status")
+    public List<BookResponse> findByRentalStatus(@RequestParam("status") RentalStatus rentalStatus) {
+        return bookService.findByRentalStatus(rentalStatus).stream()
                 .map(BookResponse::from)
                 .toList();
     }

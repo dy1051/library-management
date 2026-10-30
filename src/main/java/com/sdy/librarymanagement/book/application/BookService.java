@@ -3,6 +3,7 @@ package com.sdy.librarymanagement.book.application;
 import com.sdy.librarymanagement.book.domain.Book;
 import com.sdy.librarymanagement.book.domain.BookNotFoundException;
 import com.sdy.librarymanagement.book.domain.BookRepository;
+import com.sdy.librarymanagement.book.domain.RentalStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,5 +48,10 @@ public class BookService {
     @Transactional(readOnly = true)
     public List<Book> findByCategory(String category) {
         return bookRepository.findByCategory(category);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Book> findByRentalStatus(RentalStatus rentalStatus) {
+        return bookRepository.findByRentalStatus(rentalStatus);
     }
 }

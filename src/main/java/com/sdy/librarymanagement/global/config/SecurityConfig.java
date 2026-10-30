@@ -37,8 +37,8 @@ public class SecurityConfig {
                         .ignoringRequestMatchers("/api/auth/login")
                         .ignoringRequestMatchers(PathRequest.toH2Console())
                         .ignoringRequestMatchers("/api/members")
-                        .ignoringRequestMatchers("/api/books")
-                        .ignoringRequestMatchers("/api/books/**")
+                        .ignoringRequestMatchers("/api/books", "/api/books/**")
+                        .ignoringRequestMatchers("/api/rentals", "/api/rentals/**")
                 )
                 .headers(headers -> headers
                         .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin)
