@@ -34,9 +34,11 @@ public class SecurityConfig {
     ) throws Exception {
         http
                 .csrf(csrf -> csrf
-                        .ignoringRequestMatchers("/api/members")
                         .ignoringRequestMatchers("/api/auth/login")
                         .ignoringRequestMatchers(PathRequest.toH2Console())
+                        .ignoringRequestMatchers("/api/members")
+                        .ignoringRequestMatchers("/api/books")
+                        .ignoringRequestMatchers("/api/books/**")
                 )
                 .headers(headers -> headers
                         .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin)
